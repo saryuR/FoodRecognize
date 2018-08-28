@@ -1,0 +1,101 @@
+page-home {
+
+  .gauge{
+    width:100%;
+    max-height: 40%;
+  }
+  mwl-gauge {
+    width: 100%;
+    display: block;
+    padding-top:30px;
+
+  }
+
+  ion-label {
+    font-size: 9px;
+  }
+
+  mwl-gauge.two > .gauge > .dial {
+    stroke: #334455;
+    stroke-width: 10;
+  }
+  mwl-gauge.two > .gauge > .value {
+    stroke: orange;
+    stroke-dasharray: none;
+    stroke-width: 13;
+  }
+  mwl-gauge.two > .gauge > .value-text {
+    fill: orange;
+  }
+
+
+  .glowing {
+    animation-name: greenPulse;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
+
+  .center{
+    padding-top: 20px;
+    text-align:center;
+    padding-bottom: 20px;
+  }
+  @keyframes greenPulse {
+    from { background-color: #fbbc48; box-shadow: 0 0 9px #fbbc48; }
+    50% { background-color: #e59f20; box-shadow: 0 0 18px #e59f20; }
+    to { background-color: #ffa500; box-shadow: 0 0 9px #ffa500; }
+  }
+
+
+
+
+  @mixin textGlitch($name, $intensity, $textColor, $background, $highlightColor1, $highlightColor2, $width, $height) {
+
+    color: $textColor;
+    position: relative;
+    $steps: $intensity;
+
+    @at-root {
+      @for $i from 1 through 2 {
+        @keyframes #{$name}-anim-#{$i} {
+          @for $i from 0 through $steps {
+            #{percentage($i*(1/$steps))} {
+              clip: rect(
+                  random($height)+px,
+                  $width+px,
+                  random($height)+px,
+                  0
+              );
+            }
+          }
+        }
+      }
+    }
+    &:before,
+    &:after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: $background;
+      clip: rect(0, 0, 0, 0);
+    }
+    &:after {
+      left: 2px;
+      text-shadow: -1px 0 $highlightColor1;
+      animation: #{$name}-anim-1 2s infinite linear alternate-reverse;
+    }
+    &:before {
+      left: -2px;
+      text-shadow: 2px 0 $highlightColor2;
+      animation: #{$name}-anim-2 3s infinite linear alternate-reverse;
+    }
+
+  }
+  .glitch {
+    font-size: 25px;
+    text-align: center;
+    @include textGlitch("glitch", 10, orange, black, white, green, 714, 50);
+  }
+}

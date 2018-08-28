@@ -1,0 +1,51 @@
+<ion-header class="opaque">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="custom-dumb"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="theme">
+
+
+  <ion-card>
+    <img id="camera-image" />
+    <ion-card-content>
+
+      <ion-card-title color="danger">
+        <div class="center">
+        <ion-col *ngIf="result$ | async as result">
+
+
+          {{ result.labels[0]}}
+
+
+        </ion-col>
+      </div>
+      </ion-card-title>
+
+    </ion-card-content>
+
+  </ion-card>
+  <div class="center">
+  <button ion-button icon-start (tap)="captureAndUpload()">
+    <ion-icon name="camera"></ion-icon>
+    Activate Google Vision
+  </button>
+  </div>
+  <!--<div class ="center">-->
+    <!--<ion-input [(ngModel)]="query"></ion-input>-->
+  <!--</div>-->
+  <!--<div class ="center">-->
+    <!--<button ion-button >Click to calculate calories count</button>-->
+    <!--<p></p>-->
+  <!--</div>-->
+
+
+</ion-content>
+<ion-footer class="opaque_f">
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-footer>

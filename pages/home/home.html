@@ -1,0 +1,73 @@
+<ion-header class="opaque">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="custom-dumb"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="theme">
+<div class="gauge">
+  <mwl-gauge
+    class="two"
+    [min]="14"
+    [max]="35"
+    [dialStartAngle]="180"
+    [dialEndAngle]="0"
+    [value]="gaugeValue"
+    [animated]="true"
+    [animationDuration]="2">
+  </mwl-gauge>
+</div>
+
+  <ion-grid>
+    <ion-row align-items-start>
+      <ion-col col-3>
+        <ion-item no-lines>
+          <ion-label floating>Age</ion-label>
+          <ion-input type="text" [(ngModel)]="age"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item no-lines>
+          <ion-label floating>Sex</ion-label>
+          <ion-select [(ngModel)]="sex">
+            <ion-option value="female">Female</ion-option>
+            <ion-option value="male">Male</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item no-lines>
+          <ion-label floating>Height(m)</ion-label>
+          <ion-input type="text" [(ngModel)]="height"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item no-lines>
+          <ion-label floating>Weight(kg)</ion-label>
+          <ion-input type="text" [(ngModel)]="weight"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="center">
+  <button class="glowing" ion-button (click)="calculateBmi()">Calculate BMI</button>
+  </div>
+  <div class ="center">
+    <h2>{{bmi_cat}}</h2>
+  </div>
+  <div class="glitch" data-text="LIFE PROGRESS">LIFE PROGRESS</div>
+  <progress-bar [progress]=life_left>
+</progress-bar>
+  <div class="center">
+  <button ion-button color="danger" round (click)="showLife()" >Calculate remaining life expectancy</button>
+  </div>
+  <div class="center">
+  <button ion-button [navPush]="nextPage">Go to Next Page</button>
+  </div>
+</ion-content>
+<ion-footer class="opaque_f">
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-footer>
